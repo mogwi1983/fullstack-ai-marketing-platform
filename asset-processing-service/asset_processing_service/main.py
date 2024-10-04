@@ -1,9 +1,5 @@
-from time import sleep
-
-
 def main():
-    print("Hello World", flush=True)
-    sleep(5)
+    print("Hello World")
 
 
 if __name__ == "__main__":
