@@ -6,5 +6,5 @@ interface ProjectPageProps {
 }
 
 export default function ProjectPage({ params }: ProjectPageProps) {
-  return <div>ProjectPage: {params.slug}</div>;
+  return <div>ProjectPage: {params.projectId}</div>;
 }
