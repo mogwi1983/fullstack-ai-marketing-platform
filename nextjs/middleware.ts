@@ -1,8 +1,15 @@
-import { clerkMiddleware } from "@clerk/nextjs/server";
+//this code is to show private vs public.
 
-//TODO: add public and private routes
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-export default clerkMiddleware();
+const isPublicRoute = createRouteMatcher(["/", "/pricing"]);
+
+export default clerkMiddleware((auth, request) => {
+  //if a user is not authenticated and they are trying to access a private route, redirect them to the clerk login page
+  if (!auth().userId && !isPublicRoute(request)) {
+    auth().protect();
+  }
+});
 
 export const config = {
   matcher: [
