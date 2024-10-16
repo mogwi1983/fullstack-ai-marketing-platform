@@ -6,7 +6,13 @@ import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import SidebarNav from "./SideBarNav";
 import SidebarToggle from "./SidebarToggle";
-import { useUser } from "@clerk/nextjs";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserButton,
+  useUser,
+} from "@clerk/nextjs";
 import UserProfileSection from "./UserProfileSection";
 
 function Sidebar() {
@@ -83,7 +89,14 @@ function Sidebar() {
 
           <SidebarNav isCollapsed={isCollapsed} />
         </div>
-
+        <div>
+          <SignedOut>
+            <SignInButton />
+          </SignedOut>
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </div>
         {isSignedIn && <UserProfileSection isCollapsed={isCollapsed} />}
         <SidebarToggle
           isCollapsed={isCollapsed}
