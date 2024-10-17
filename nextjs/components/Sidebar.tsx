@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,6 @@ function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const { isSignedIn } = useUser();
-
   const sidebarRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -90,14 +89,9 @@ function Sidebar() {
           <SidebarNav isCollapsed={isCollapsed} />
         </div>
         <div>
-          <SignedOut>
-            <SignInButton />
-          </SignedOut>
-          <SignedIn>
-            <UserButton />
-          </SignedIn>
+          {isSignedIn && <UserProfileSection isCollapsed={isCollapsed} />}
         </div>
-        {isSignedIn && <UserProfileSection isCollapsed={isCollapsed} />}
+
         <SidebarToggle
           isCollapsed={isCollapsed}
           toggleSidebar={toggleCollapse}
