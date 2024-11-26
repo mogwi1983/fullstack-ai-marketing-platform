@@ -76,8 +76,7 @@ function ProjectDetailView({ project }: ProjectDetailViewProps) {
         handleStepClick={handleStepClick}
         steps={steps}
       />
-
-      <div className="bg-gray-50 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm mt-10sm:mt-10 sm:mt-12 lg:mt-10">
+      <div className="bg-gray-50 rounded-2xl p-4 sm:p-6 lg:p-8 shadow-sm mt-10 sm:mt-12 lg:mt-10">
         <ProjectDetailBody
           currentStep={currentStep}
           steps={steps}

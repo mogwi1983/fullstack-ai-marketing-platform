@@ -1,6 +1,5 @@
 import { db } from "@/server/db";
-import { assetTable } from "@/server/db/schema";
-import { assetProcessingJobTable } from "@/server/db/schema";
+import { assetProcessingJobTable, assetTable } from "@/server/db/schema";
 import { auth } from "@clerk/nextjs/server";
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";

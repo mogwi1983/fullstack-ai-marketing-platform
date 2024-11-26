@@ -9,6 +9,7 @@ function ManageUploadStep({ projectId }: ManageUploadStepProps) {
   return (
     <div>
       <UploadStepHeader projectId={projectId} />
+      {/* TODO: Add the upload body component */}
     </div>
   );
 }
