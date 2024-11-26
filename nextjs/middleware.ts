@@ -1,12 +1,17 @@
-import { authMiddleware } from "@clerk/nextjs/server";
+import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 
-export default authMiddleware({
-  publicRoutes: ["/", "/api/webhook"],
-  async beforeAuth(req) {
-    // Any custom logic before auth
-  },
+const isPublicRoute = createRouteMatcher(["/", "/pricing", "/api/upload"]);
+
+export default clerkMiddleware((auth, request) => {
+  if (!auth().userId && !isPublicRoute(request)) {
+    auth().protect();
+  }
 });
 
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    "/((?!_next|[^?]*\\.(?:html?|css|js(?!on)|jpe?g|webp|png|gif|svg|ttf|woff2?|ico|csv|docx?|xlsx?|zip|webmanifest|json|xml|txt|webp)).*)",
+    "/",
+    "/(api|trpc)(.*)",
+  ],
 };
