@@ -7,6 +7,11 @@ const nextConfig = {
     },
     typedRoutes: true,
   },
+  images: {
+    domains: ["localhost"],
+    unoptimized: true,
+  },
+  output: "standalone",
   async headers() {
     return [
       {
