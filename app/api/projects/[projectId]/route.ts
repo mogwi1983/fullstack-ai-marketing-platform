@@ -50,9 +50,11 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { projectId: string } }
+  context: { params: Promise<{ projectId: string }> }
 ) {
+  const { projectId } = await context.params;
   const { userId } = getAuth(request);
+
   if (!userId) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -60,10 +62,7 @@ export async function DELETE(
   const deletedProject = await db
     .delete(projectsTable)
     .where(
-      and(
-        eq(projectsTable.userId, userId),
-        eq(projectsTable.id, params.projectId)
-      )
+      and(eq(projectsTable.userId, userId), eq(projectsTable.id, projectId))
     )
     .returning();
 
